@@ -7,20 +7,16 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    /**
-     * Create a new AuthController instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
     /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/v1/login",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
      */
     public function login()
     {
@@ -34,9 +30,10 @@ class AuthController extends Controller
     }
 
     /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/v1/me",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
      */
     public function me()
     {
@@ -44,9 +41,10 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *     path="/v1/logout",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
      */
     public function logout()
     {
@@ -55,23 +53,17 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
+   /**
+     * @OA\Post(
+     *     path="/api/refresh",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
      */
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
     }
 
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     protected function respondWithToken($token)
     {
         return response()->json([

@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,15 +10,19 @@ class UserDbTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_create_user_admin(): void
+    private function getUser(): User
     {
-
-        $user = User::factory()->create([
+        return User::factory()->create([
             'nome' => 'Pedagogo',
             'email' => 'admin@admin.com',
             'nickname' => 'pedagogo',
             'perfil' => 3,
         ]);
+    }
+
+    public function test_create_user_admin(): void
+    {
+        $user = $this->getUser();
 
         $this->assertDatabaseHas('users', [
             'nome' => 'Pedagogo',
@@ -33,17 +36,10 @@ class UserDbTest extends TestCase
 
     public function test_delete_user(): void
     {
-
-        $user = User::factory()->create();
+        $user = $this->getUser();
 
         $user->delete();
 
         $this->assertModelMissing($user);
     }
-
-    // public function test_mult_users(): void
-    // {
-    //     User::factory()->count(5)->make();
-    //     $this->expectsDatabaseQueryCount(5);
-    // }
 }

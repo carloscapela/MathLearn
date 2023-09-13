@@ -11,14 +11,19 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_login(): void
+    private function getUser(): User
     {
-        User::factory()->create([
+        return User::factory()->create([
             'nome' => 'Pedagogo',
             'email' => 'admin@admin.com',
             'nickname' => 'pedagogo',
             'perfil' => 3,
         ]);
+    }
+
+    public function test_login(): void
+    {
+        $this->getUser();
 
         $response = $this->postJson('/v1/login', [
             'email' => 'admin@admin.com',
@@ -33,13 +38,6 @@ class LoginTest extends TestCase
 
     public function test_not_login(): void
     {
-        User::factory()->create([
-            'nome' => 'Pedagogo',
-            'email' => 'admin@admin.com',
-            'nickname' => 'pedagogo',
-            'perfil' => 3,
-        ]);
-
         $response = $this->postJson('/v1/login', [
             'email' => 'admin@1admin.com',
             'password' => 'password1',

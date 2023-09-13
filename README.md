@@ -1,5 +1,5 @@
 
-## Sobre o MathLearn
+## Sobre a API - MathLearn
 
 Um sistema web que auxilie no ensino de modo autodidata de operadores matemáticos para que os usuários possam aprender e praticar os seus estudos.
 

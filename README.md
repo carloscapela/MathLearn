@@ -1,9 +1,9 @@
 
 ## Sobre o MathLearn
 
-Tudo sobre o projeto aqui.
+Um sistema web que auxilie no ensino de modo autodidata de operadores matemáticos para que os usuários possam aprender e praticar os seus estudos.
 
 
 ## License
 
-Ainda em definicao, por padra: [MIT license](https://opensource.org/licenses/MIT).
+Padrao: [MIT license](https://opensource.org/licenses/MIT).
